@@ -1,0 +1,15 @@
+name: Dispatch - Build and Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: npm ci
+      - run: npm run all

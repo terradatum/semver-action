@@ -1,0 +1,10 @@
+name: 'Semver Extract'
+description: 'Extract the semver from a package management file.'
+branding:
+  icon: package
+  color: blue
+inputs:
+
+runs:
+  using: node12
+  main: dist/index.js
