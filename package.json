@@ -1,6 +1,6 @@
 {
   "name": "@terradatum/semver-action",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "lib/main.js",
   "publishConfig": {
     "access": "public"
