@@ -58,6 +58,6 @@ See [CHANGELOG][changelog-url].
 This project released under the [MIT License][license-url].
 
 <!-- Links: -->
-[license-url]: https://github.com/terradatum/template-action/blob/master/LICENSE.md
+[license-url]: https://github.com/terradatum/semver-action/blob/master/LICENSE.md
 
-[changelog-url]: https://github.com/terradatum/template-action/blob/master/CHANGELOG.md
+[changelog-url]: https://github.com/terradatum/semver-action/blob/master/CHANGELOG.md
