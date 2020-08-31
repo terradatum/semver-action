@@ -13,6 +13,8 @@ jobs:
           fetch-depth: 0
       - run: npm ci
       - run: npm run all
+      - name: Verifying no unstaged changes
+        run: __test__/verify-no-unstaged-changes.sh
       - name: Get package.json version
         uses: ./
         id: get_version
@@ -28,6 +30,6 @@ jobs:
           git config --local user.email "sysadmin@terradatum.com"
           git config --local user.name "Terradatum Automation"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
-          git tag -d "v${{ steps.get_version.outputs.major }}"
+          git tag -d "v${{ steps.get_version.outputs.major }}" || exit 0
           git tag "v${{ steps.get_version.outputs.major }}" -m "Update to v${{ steps.get_version.outputs.major }} from ${{ steps.get_version.outputs.version }}"
           git push --force --tags
