@@ -1,3 +1,15 @@
+# v1.0.8 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Force push major version tag - another try ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.7 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
