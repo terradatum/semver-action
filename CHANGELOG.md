@@ -1,3 +1,15 @@
+# v1.0.16 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Update action.yml to use < 125 characters for action description ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.15 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
