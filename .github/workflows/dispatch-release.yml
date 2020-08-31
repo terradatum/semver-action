@@ -13,7 +13,8 @@ jobs:
           fetch-depth: 0
       - run: npm ci
       - run: npm run all
-      - uses: ./
+      - name: Get the package.json version
+        uses: ./
         id: get_version
         with:
           package-manager-type: npm
@@ -27,5 +28,5 @@ jobs:
           git config --local user.email "sysadmin@terradatum.com"
           git config --local user.name "Terradatum Automation"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
-          git tag v${{ steps.get_version.outputs.version.major }} -m "Update to v${{ steps.get_version.outputs.version.major }} from ${{ steps.get_version.outputs.version }}"
+          git tag "v${{ steps.get_version.outputs.major }}" -m "Update to v${{ steps.get_version.outputs.major }} from ${{ steps.get_version.outputs.version }}"
           git push --follow-tags
