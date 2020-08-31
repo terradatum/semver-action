@@ -7,19 +7,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/terradatum/template-action.git"
+    "url": "git+https://github.com/terradatum/semver-action.git"
   },
   "keywords": [
     "github",
     "actions",
-    "template-action"
+    "semver-action"
   ],
   "author": "G. Richard Bellamy <rbellamy@terradatum.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/terradatum/template-action/issues"
+    "url": "https://github.com/terradatum/semver-action/issues"
   },
-  "homepage": "https://github.com/terradatum/template-action#readme",
+  "homepage": "https://github.com/terradatum/semver-action#readme",
   "scripts": {
     "build": "tsc && ncc build && node lib/misc/generate-docs.js",
     "format": "prettier --write **/**.ts",
