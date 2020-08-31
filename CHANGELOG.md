@@ -1,3 +1,15 @@
+# v1.0.12 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Finish renaming the package ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.11 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
