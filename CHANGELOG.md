@@ -1,3 +1,15 @@
+# v1.0.15 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Hopefully final tweak to README ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.14 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
