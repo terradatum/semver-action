@@ -37,9 +37,9 @@ jobs:
           version: v2.0.1-SNAPSHOT
       - name: semver snapshot test
         run: |
-          echo "Version: ${{ steps.get_snapshot_version.version }}"
-          echo "Build Version: ${{ steps.get_snapshot_version.build-version }}"
-          echo "Next Version: ${{ steps.get_snapshot_version.next-version }}"
+          echo "Version: ${{ steps.get_snapshot_version.outputs.version }}"
+          echo "Build Version: ${{ steps.get_snapshot_version.outputs.build-version }}"
+          echo "Next Version: ${{ steps.get_snapshot_version.outputs.next-version }}"
       - name: semver
         id: get_version
         uses: ./
@@ -47,8 +47,8 @@ jobs:
           version: v2.0.1
       - name: semver test
         run: |
-          echo "Version: ${{ steps.get_version.version }}"
-          echo "Build Version: ${{ steps.get_version.build-version }}"
-          echo "Next Version: ${{ steps.get_version.next-version }}"
+          echo "Version: ${{ steps.get_version.outputs.version }}"
+          echo "Build Version: ${{ steps.get_version.outputs.build-version }}"
+          echo "Next Version: ${{ steps.get_version.outputs.next-version }}"
 
 # Test the action here

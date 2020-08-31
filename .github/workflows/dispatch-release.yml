@@ -14,3 +14,5 @@ jobs:
       - run: npm ci
       - run: npm run all
       - run: npm run release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
