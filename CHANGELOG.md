@@ -1,3 +1,15 @@
+# v1.0.10 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Verify no unstaged changes before release ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.9 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
