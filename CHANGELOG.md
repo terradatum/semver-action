@@ -1,3 +1,15 @@
+# v1.0.5 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Fix version outputs ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.4 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
