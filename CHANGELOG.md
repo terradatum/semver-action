@@ -1,3 +1,15 @@
+# v1.0.6 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Rename get_version step ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.5 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
