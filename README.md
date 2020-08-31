@@ -6,22 +6,6 @@ Fork this repository as a template
 
 ## Usage
 
-Using an input version
-
-```yaml
-steps:
-  - name: Checkout
-    uses: actions/checkout@v2
-  - name: Get the semver-action private action
-    with:
-      repository: terradatum/semver-action
-      token: ${{ secrets.GH_PAT }}
-      path: ./.github/actions/semver-action
-  - uses: ./.github/actions/semver-action
-    with:
-      version: 'v1.0.0'
-```
-
 <!-- start usage -->
 ```yaml
 - uses: terradatum/semver-action@master
@@ -39,20 +23,32 @@ steps:
 
 ### Basic Usage
 
-TBD
+Using an input version:
 
 ```yaml
 steps:
   - name: Checkout
     uses: actions/checkout@v2
+  - uses: @terradatum/semver-action
+    with:
+      version: v1.0.0
 ```
 
 ### Advanced Usage
 
+Using an npm Package Manager Type and bump based on `auto version`:
+
 ```yaml
 steps:
   - name: Checkout
     uses: actions/checkout@v2
+  - name: Get bump
+    id: get_bump
+    run: echo "::set-output name=bump::$(auto version)"
+  - uses: @terradatum/semver-action
+    with:
+      package-manager-type: npm
+      bump: ${{ steps.get_bump.outputs.bump }}
 ```
 
 ## Changelog
