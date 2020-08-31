@@ -10,13 +10,16 @@ Fork this repository as a template
 ```yaml
 - uses: terradatum/semver-action@master
   with:
-    # The current version.
+    # The current version passed as an input to the action.
     version: ''
 
-    # The type of package manager. One of maven, npm.
+    # The type of package manager. One of maven, npm. Used to collect the current
+    # version from the package manager file associated with that package manager (e.g.
+    # npm => package.json, maven = pom.xml, etc.).
     package-manager-type: ''
 
-    # The type of version increment (e.g. patch, minor, major, prerelease, etc.).
+    # The type of version increment (e.g. patch, minor, major, prerelease, etc.). This
+    # action is READ-ONLY for the filesystem.
     bump: ''
 ```
 <!-- end usage -->

@@ -1,16 +1,19 @@
 name: Semver Extract
 description: >
-  Work with Semantic Versions. Pass the version as a parameter, or extract it from a package management file in the
-  working directory. This action is READ-ONLY for the filesystem.
+  Work with Semantic Versions.
 inputs:
   version:
-    description: The current version.
+    description: The current version passed as an input to the action.
     required: false
   package-manager-type:
-    description: The type of package manager. One of maven, npm.
+    description: >
+      The type of package manager. One of maven, npm. Used to collect the current version from the package manager file
+      associated with that package manager (e.g. npm => package.json, maven = pom.xml, etc.).
     required: false
   bump:
-    description: The type of version increment (e.g. patch, minor, major, prerelease, etc.).
+    description: >
+      The type of version increment (e.g. patch, minor, major, prerelease, etc.). This action is READ-ONLY for the
+      filesystem.
     required: false
 outputs:
   version:
