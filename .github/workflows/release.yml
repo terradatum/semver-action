@@ -32,4 +32,4 @@ jobs:
           git config --local user.name "Terradatum Automation"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
           git tag "v${{ steps.get_version.outputs.major }}" -m "Update to v${{ steps.get_version.outputs.major }} from ${{ steps.get_version.outputs.version }}"
-          git push --force --follow-tags
+          git push --force --tags
