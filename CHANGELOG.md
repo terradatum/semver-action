@@ -1,3 +1,15 @@
+# v1.0.2 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Add an Organization-level NPM_TOKEN ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.1 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
