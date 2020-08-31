@@ -1,8 +1,7 @@
 {
   "include": [
-    "src/**/*",
-    "typings/**/*",
-    "__test__/**/*"
+    "src",
+    "typings"
   ],
   "compilerOptions": {
     "target": "es6",
@@ -18,5 +17,5 @@
     "esModuleInterop": true,
     "sourceMap": true
   },
-  "exclude": ["lib", "node_modules"]
+  "exclude": ["__test__","lib", "node_modules"]
 }

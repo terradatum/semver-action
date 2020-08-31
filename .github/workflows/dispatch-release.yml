@@ -13,3 +13,4 @@ jobs:
           fetch-depth: 0
       - run: npm ci
       - run: npm run all
+      - run: npm run release

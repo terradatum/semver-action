@@ -1,5 +1,5 @@
 {
-  "name": "@terradatum/template-action",
+  "name": "@terradatum/semver-action",
   "version": "1.0.0",
   "main": "lib/main.js",
   "publishConfig": {
@@ -27,7 +27,7 @@
     "lint": "eslint src/**/**.ts",
     "test": "jest",
     "release": "npx auto shipit",
-    "all": "npm run build && npm run format-check && npm run lint && npm run test && npm run release"
+    "all": "npm run build && npm run format-check && npm run lint && npm run test"
   },
   "dependencies": {},
   "devDependencies": {
