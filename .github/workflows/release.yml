@@ -16,7 +16,8 @@ jobs:
           fetch-depth: 0
       - run: npm ci
       - run: npm run all
-      - uses: ./
+      - name: Get package.json version
+        uses: ./
         id: get_version
         with:
           package-manager-type: npm
