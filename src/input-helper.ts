@@ -1,40 +1,42 @@
 import * as core from '@actions/core'
-import * as github from '@actions/github'
-import * as fsHelper from './fs-helper'
 import {ISettings} from './settings'
-import * as path from 'path'
+import * as fs from 'fs'
+import {promisify} from 'util'
+import path from 'path'
+import {IPom, parse} from 'pom-parser'
 
-export function getInputs(): ISettings {
+const readFile = promisify(fs.readFile)
+const parsePom = promisify(parse)
+
+export async function getInputs(): Promise<ISettings> {
   const result = ({} as unknown) as ISettings
 
-  // GitHub workspace
-  let githubWorkspacePath = process.env['GITHUB_WORKSPACE']
-  if (!githubWorkspacePath) {
-    throw new Error('GITHUB_WORKSPACE not defined')
+  result.version = core.getInput('version')
+  result.packageManagerType = core.getInput('package-manager-type')
+  switch (result.packageManagerType) {
+    case 'maven': {
+      const pomXml: IPom = await loadPomXml()
+      if (pomXml?.pomObject?.project?.version) {
+        result.version = pomXml.pomObject.project.version
+      }
+      break
+    }
+    case 'npm': {
+      const packageJson = await loadPackageJson()
+      if (packageJson?.version) {
+        result.version = packageJson.version
+      }
+      break
+    }
   }
-  githubWorkspacePath = path.resolve(githubWorkspacePath)
-  core.debug(`GITHUB_WORKSPACE = '${githubWorkspacePath}'`)
-  fsHelper.directoryExistsSync(githubWorkspacePath, true)
-
-  //result.workingDirectory = githubWorkspacePath
-
-  // Qualified repository
-  const qualifiedRepository =
-    core.getInput('repo') ||
-    `${github.context.repo.owner}/${github.context.repo.repo}`
-  core.debug(`qualified repository = '${qualifiedRepository}'`)
-  const splitRepository = qualifiedRepository.split('/')
-  if (
-    splitRepository.length !== 2 ||
-    !splitRepository[0] ||
-    !splitRepository[1]
-  ) {
-    throw new Error(
-      `Invalid repository '${qualifiedRepository}'. Expected format {owner}/{repo}.`
-    )
-  }
-  const repoOwner = splitRepository[0]
-  const repoName = splitRepository[1]
-
+  result.bump = core.getInput('bump')
   return result
+}
+
+export async function loadPackageJson(root = './'): Promise<IPackageJSON> {
+  return JSON.parse(await readFile(path.join(root, 'package.json'), 'utf-8'))
+}
+
+export async function loadPomXml(root = './'): Promise<IPom> {
+  return parsePom({filePath: path.join(root, 'pom.xml')})
 }

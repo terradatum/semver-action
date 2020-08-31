@@ -28,6 +28,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        with:
+          fetch-depth: 0
+      - name: semver snapshot
+        id: get_snapshot_version
+        uses: ./
+        with:
+          version: v2.0.1-SNAPSHOT
+      - name: semver snapshot test
+        run: |
+          echo "Version: ${{ steps.get_snapshot_version.version }}"
+          echo "Build Version: ${{ steps.get_snapshot_version.build-version }}"
+          echo "Next Version: ${{ steps.get_snapshot_version.next-version }}"
+      - name: semver
+        id: get_version
+        uses: ./
+        with:
+          version: v2.0.1
+      - name: semver test
+        run: |
+          echo "Version: ${{ steps.get_version.version }}"
+          echo "Build Version: ${{ steps.get_version.build-version }}"
+          echo "Next Version: ${{ steps.get_version.next-version }}"
 
 # Test the action here

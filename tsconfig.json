@@ -1,4 +1,9 @@
 {
+  "include": [
+    "src/**/*",
+    "typings/**/*",
+    "__test__/**/*"
+  ],
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -13,5 +18,5 @@
     "esModuleInterop": true,
     "sourceMap": true
   },
-  "exclude": ["__test__", "lib", "node_modules"]
+  "exclude": ["lib", "node_modules"]
 }

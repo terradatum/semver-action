@@ -1,10 +1,25 @@
-name: 'Semver Extract'
-description: 'Extract the semver from a package management file.'
+name: Semver Extract
+description: >
+  Work with Semantic Versions. Pass the version as a parameter, or extract it from a package management file in the
+  working directory. This action is READ-ONLY for the filesystem.
+inputs:
+  version:
+    description: The current version.
+    required: false
+  package-manager-type:
+    description: The type of package manager. One of maven, npm.
+    required: false
+  bump:
+    description: The type of version increment (e.g. patch, minor, major, prerelease, etc.).
+    required: false
+outputs:
+  version:
+    description: The current version.
+  next-version:
+    description: The next version based on the bump.
 branding:
   icon: package
   color: blue
-inputs:
-
 runs:
   using: node12
   main: dist/index.js
