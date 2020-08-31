@@ -24,7 +24,7 @@ steps:
 
 <!-- start usage -->
 ```yaml
-- uses: terradatum/template-action@master
+- uses: terradatum/semver-action@master
   with:
     # The current version.
     version: ''

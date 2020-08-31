@@ -120,7 +120,7 @@ function updateUsage(
 }
 
 updateUsage(
-  'terradatum/template-action@master',
+  'terradatum/semver-action@master',
   path.join(__dirname, '..', '..', 'action.yml'),
   path.join(__dirname, '..', '..', 'README.md')
 )
