@@ -1,3 +1,15 @@
+# v1.0.13 (Mon Aug 31 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Update doc generation ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.12 (Mon Aug 31 2020)
 
 #### ⚠️ Pushed to `master`
