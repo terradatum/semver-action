@@ -1,0 +1,40 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: npm ci
+      - run: npm run all
+      - name: Verifying no unstaged changes
+        run: __test__/verify-no-unstaged-changes.sh
+      - name: Get package.json version
+        uses: ./
+        id: get_version
+        with:
+          package-manager-type: npm
+      - run: npm run release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Push to Major version tag
+        if: ${{ success() }}
+        env:
+          NEXT_VERSION: ${{ steps.get_version.outputs.next-version }}
+          NEXT_MAJOR: ${{ steps.get_version.outputs.next-major }}
+        run: |
+          git config --local user.email "sysadmin@terradatum.com"
+          git config --local user.name "Terradatum Automation"
+          git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
+          git tag --force -a "v${NEXT_MAJOR}" -m "Update to v${NEXT_MAJOR} from ${NEXT_VERSION}"
+          git push --force --tags

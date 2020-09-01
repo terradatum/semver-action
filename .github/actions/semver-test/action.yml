@@ -1,0 +1,61 @@
+name: semver-test
+description: Tests the version outputs of semver-action
+inputs:
+  expected-version:
+    description: The expected current version
+    required: true
+  actual-version:
+    description: The actual current version
+    required: true
+  expected-build-version:
+    description: The expected build version
+    required: false
+  actual-build-version:
+    description: The actual build version
+    required: false
+  expected-next-version:
+    description: The expected next version
+    required: false
+  actual-next-version:
+    description: The actual next version
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Compare Version
+      run: |
+        if [[ "${{ inputs.expected-version }}" != "${{ inputs.actual-version.version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version.version }}"
+          exit 1
+        else
+          echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version.version }}"
+          echo "Actual major: ${{ inputs.actual-version.major }}"
+          echo "Actual minor: ${{ inputs.actual-version.minor }}"
+          echo "Actual patch: ${{ inputs.actual-version.patch }}"
+        fi
+      shell: bash
+    - name: Compare Build Version
+      run: |
+        if [[ "${{ inputs.expected-build-version }}" != "${{ inputs.actual-build-version.version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-build-version }}, Actual: ${{ inputs.actual-build-version.version }}"
+          exit 1
+        else
+          echo "Expected: ${{ inputs.expected-build-version }}, Actual: ${{ inputs.actual-build-version.version }}"
+          echo "Actual major: ${{ inputs.actual-build-version.major }}"
+          echo "Actual minor: ${{ inputs.actual-build-version.minor }}"
+          echo "Actual patch: ${{ inputs.actual-build-version.patch }}"
+        fi
+      shell: bash
+    - name: Compare Next Version
+      run: |
+        if [[ "${{ inputs.expected-next-version }}" != "${{ inputs.actual-next-version.version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version.version }}"
+          exit 1
+        else
+          echo "Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version.version }}"
+          echo "Actual major: ${{ inputs.actual-next-version.major }}"
+          echo "Actual minor: ${{ inputs.actual-next-version.minor }}"
+          echo "Actual patch: ${{ inputs.actual-next-version.patch }}"
+        fi
+      shell: bash

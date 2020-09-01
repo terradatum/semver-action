@@ -1,0 +1,62 @@
+name: Build and Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: npm ci
+      - run: npm run all
+      - name: Verifying no unstaged changes
+        run: __test__/verify-no-unstaged-changes.sh
+  test:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: semver snapshot
+        id: get_snapshot_version
+        uses: ./
+        with:
+          version: v2.0.1-SNAPSHOT
+          bump: patch
+      - name: semver test
+        uses: ./.github/actions/semver-test/
+        with:
+          expected-version: 2.0.1-SNAPSHOT
+          actual-version: ${{ steps.get_snapshot_version.outputs.version }}
+          expected-build-version: 2.0.1
+          actual-build-version: ${{ steps.get_snapshot_version.outputs.build-version }}
+          expected-next-version: 2.0.2-SNAPSHOT
+          actual-next-version: ${{ steps.get_snapshot_version.outputs.next-version }}
+      - name: semver
+        id: get_version
+        uses: ./
+        with:
+          version: v2.0.1
+          bump: patch
+      - name: semver test
+        uses: ./.github/actions/semver-test/
+        with:
+          expected-version: 2.0.1
+          actual-version: ${{ steps.get_version.outputs.version }}
+          expected-build-version: 2.0.2
+          actual-build-version: ${{ steps.get_version.outputs.build-version }}
+          expected-next-version: 2.0.3
+          actual-next-version: ${{ steps.get_version.outputs.next-version }}

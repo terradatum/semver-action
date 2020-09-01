@@ -1,0 +1,49 @@
+name: Semver Extract
+description: >
+  Work with Semantic Versions.
+inputs:
+  version:
+    description: The current version passed as an input to the action.
+    required: false
+  package-manager-type:
+    description: >
+      The type of package manager. One of maven, npm. Used to collect the current version from the package manager file
+      associated with that package manager (e.g. npm => package.json, maven = pom.xml, etc.).
+    required: false
+  bump:
+    description: >
+      The type of version increment (e.g. patch, minor, major, prerelease, etc.). This action is READ-ONLY for the
+      filesystem.
+    required: false
+outputs:
+  version:
+    description: The current version.
+  major:
+    description: The current MAJOR version.
+  minor:
+    description: The current MINOR version.
+  patch:
+    description: The current PATCH version.
+  build-version:
+    description: The version used to build.
+  build-major:
+    description: The build MAJOR version.
+  build-minor:
+    description: The build MINOR version.
+  build-patch:
+    description: The build PATCH version.
+  next-version:
+    description: the next version to set after the build.
+  next-major:
+    description: The next MAJOR version.
+  next-minor:
+    description: The next MINOR version.
+  next-patch:
+    description: The next PATCH version.
+
+branding:
+  icon: package
+  color: blue
+runs:
+  using: node12
+  main: dist/index.js
