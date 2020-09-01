@@ -1,3 +1,16 @@
+# v1.0.27 (Tue Sep 01 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Fix some formatting. ([@rbellamy](https://github.com/rbellamy))
+- Initial commit. ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.25 (Tue Sep 01 2020)
 
 #### ⚠️ Pushed to `master`
