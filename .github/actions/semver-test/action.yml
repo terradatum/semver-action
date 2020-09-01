@@ -30,9 +30,6 @@ runs:
           exit 1
         else
           echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
-          echo "Actual major: ${{ inputs.actual-version.major }}"
-          echo "Actual minor: ${{ inputs.actual-version.minor }}"
-          echo "Actual patch: ${{ inputs.actual-version.patch }}"
         fi
       shell: bash
     - name: Compare Next Version
@@ -42,9 +39,6 @@ runs:
           exit 1
         else
           echo "Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version }}"
-          echo "Actual major: ${{ inputs.actual-next-version.major }}"
-          echo "Actual minor: ${{ inputs.actual-next-version.minor }}"
-          echo "Actual patch: ${{ inputs.actual-next-version.patch }}"
         fi
       shell: bash
     - name: Compare Next SNAPSHOT Version
@@ -54,8 +48,5 @@ runs:
           exit 1
         else
           echo "Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version.version }}"
-          echo "Actual major: ${{ inputs.actual-next-snapshot-version.major }}"
-          echo "Actual minor: ${{ inputs.actual-next-snapshot-version.minor }}"
-          echo "Actual patch: ${{ inputs.actual-next-snapshot-version.patch }}"
         fi
       shell: bash
