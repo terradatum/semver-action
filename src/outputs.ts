@@ -54,7 +54,9 @@ export class Outputs implements IOutputs {
     if (bump) {
       this.nextVersion = new SemVer(`${this.version}`).inc(bump as ReleaseType)
       if (this.snapshotRelease) {
-        const nextSnapshotVersion = new SemVer(`${this.nextVersion}`).inc(bump as ReleaseType)
+        const nextSnapshotVersion = new SemVer(`${this.nextVersion}`).inc(
+          bump as ReleaseType
+        )
         this.nextSnapshotVersion = new SemVer(`${nextSnapshotVersion}-SNAPSHOT`)
       }
     }

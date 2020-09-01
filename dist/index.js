@@ -129,12 +129,28 @@ const inputHelper = __importStar(__webpack_require__(5480));
 const outputHelper = __importStar(__webpack_require__(6983));
 const outputs_1 = __webpack_require__(5314);
 function run() {
+    var _a, _b, _c, _d, _e, _f;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const settings = yield inputHelper.getInputs();
             core.debug(`Running semver-action with the following action settings:\n${JSON.stringify(settings)}`);
-            const outputs = new outputs_1.Outputs(settings.version, settings.bump);
-            outputHelper.setOutputs(outputs);
+            const outputs = new outputs_1.Outputs();
+            yield outputs.setVersions(settings.version, settings.bump);
+            core.startGroup('Semantic Versions');
+            core.info(`Version: ${outputs.version}`);
+            core.info(`Version MAJOR: ${outputs.version.major}`);
+            core.info(`Version MINOR: ${outputs.version.minor}`);
+            core.info(`Version PATCH: ${outputs.version.patch}`);
+            core.info(`Next Version: ${outputs.nextVersion}`);
+            core.info(`Next Version MAJOR: ${(_a = outputs.nextVersion) === null || _a === void 0 ? void 0 : _a.major}`);
+            core.info(`Next Version MINOR: ${(_b = outputs.nextVersion) === null || _b === void 0 ? void 0 : _b.minor}`);
+            core.info(`Next Version PATCH: ${(_c = outputs.nextVersion) === null || _c === void 0 ? void 0 : _c.patch}`);
+            core.info(`Next Snapshot Version: ${outputs.nextSnapshotVersion}`);
+            core.info(`Next Snapshot Version MAJOR: ${(_d = outputs.nextSnapshotVersion) === null || _d === void 0 ? void 0 : _d.major}`);
+            core.info(`Next Snapshot Version MINOR: ${(_e = outputs.nextSnapshotVersion) === null || _e === void 0 ? void 0 : _e.minor}`);
+            core.info(`Next Snapshot Version PATCH: ${(_f = outputs.nextSnapshotVersion) === null || _f === void 0 ? void 0 : _f.patch}`);
+            core.endGroup();
+            yield outputHelper.setOutputs(outputs);
         }
         catch (error) {
             core.setFailed(error.message);
@@ -186,18 +202,18 @@ function setOutputs(outputs) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     return __awaiter(this, void 0, void 0, function* () {
         core.setOutput('snapshot-release', Boolean(outputs === null || outputs === void 0 ? void 0 : outputs.snapshotRelease));
-        core.setOutput('version', String(outputs === null || outputs === void 0 ? void 0 : outputs.version));
-        core.setOutput('major', String((_a = outputs === null || outputs === void 0 ? void 0 : outputs.version) === null || _a === void 0 ? void 0 : _a.major));
-        core.setOutput('minor', String((_b = outputs === null || outputs === void 0 ? void 0 : outputs.version) === null || _b === void 0 ? void 0 : _b.minor));
-        core.setOutput('patch', String((_c = outputs === null || outputs === void 0 ? void 0 : outputs.version) === null || _c === void 0 ? void 0 : _c.patch));
-        core.setOutput('next-version', String(outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion));
-        core.setOutput('next-major', String((_d = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _d === void 0 ? void 0 : _d.major));
-        core.setOutput('next-minor', String((_e = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _e === void 0 ? void 0 : _e.minor));
-        core.setOutput('next-patch', String((_f = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _f === void 0 ? void 0 : _f.patch));
-        core.setOutput('build-version', String(outputs === null || outputs === void 0 ? void 0 : outputs.nextVersion));
-        core.setOutput('build-major', String((_g = outputs === null || outputs === void 0 ? void 0 : outputs.nextVersion) === null || _g === void 0 ? void 0 : _g.major));
-        core.setOutput('build-minor', String((_h = outputs === null || outputs === void 0 ? void 0 : outputs.nextVersion) === null || _h === void 0 ? void 0 : _h.minor));
-        core.setOutput('build-patch', String((_j = outputs === null || outputs === void 0 ? void 0 : outputs.nextVersion) === null || _j === void 0 ? void 0 : _j.patch));
+        core.setOutput('version', String(outputs.version));
+        core.setOutput('major', String((_a = outputs.version) === null || _a === void 0 ? void 0 : _a.major));
+        core.setOutput('minor', String((_b = outputs.version) === null || _b === void 0 ? void 0 : _b.minor));
+        core.setOutput('patch', String((_c = outputs.version) === null || _c === void 0 ? void 0 : _c.patch));
+        core.setOutput('next-version', String(outputs.nextVersion));
+        core.setOutput('next-major', String((_d = outputs.nextVersion) === null || _d === void 0 ? void 0 : _d.major));
+        core.setOutput('next-minor', String((_e = outputs.nextVersion) === null || _e === void 0 ? void 0 : _e.minor));
+        core.setOutput('next-patch', String((_f = outputs.nextVersion) === null || _f === void 0 ? void 0 : _f.patch));
+        core.setOutput('next-snapshot-version', String(outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion));
+        core.setOutput('next-snapshot-major', String((_g = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _g === void 0 ? void 0 : _g.major));
+        core.setOutput('next-snapshot-minor', String((_h = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _h === void 0 ? void 0 : _h.minor));
+        core.setOutput('next-snapshot-patch', String((_j = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _j === void 0 ? void 0 : _j.patch));
     });
 }
 exports.setOutputs = setOutputs;
@@ -206,31 +222,59 @@ exports.setOutputs = setOutputs;
 /***/ }),
 
 /***/ 5314:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Outputs = void 0;
 const semver_1 = __webpack_require__(1383);
 class Outputs {
-    constructor(version, bump) {
+    constructor() {
+        this.version = new semver_1.SemVer('0.0.0');
         this.snapshotRelease = false;
-        this.snapshotRelease = version.endsWith('-SNAPSHOT');
-        this.version = new semver_1.SemVer(version);
-        const versionNoSnapshot = version.replace('-SNAPSHOT', '');
-        const previousVersion = new semver_1.SemVer(versionNoSnapshot);
-        const buildVersion = this.snapshotRelease && bump === 'patch'
-            ? previousVersion
-            : semver_1.inc(previousVersion.toString(), bump);
-        if (buildVersion) {
-            this.nextVersion = new semver_1.SemVer(buildVersion);
-            const n = semver_1.inc(buildVersion.toString(), bump);
-            const nextVersion = this.snapshotRelease ? `${n}-SNAPSHOT` : n;
-            if (nextVersion) {
-                this.nextSnapshotVersion = new semver_1.SemVer(nextVersion);
+    }
+    /**
+     * Set the various versions based on the initial version string, and based on the following:
+     * 1. SNAPSHOTS:
+     *    a. Version: the version found in the pom.xml. E.g. 1.0.0-SNAPSHOT
+     *    b. Next Version: the version to use when building.
+     *       * If it's a patch, then the SNAPSHOT version is used without incrementing. E.g. 1.0.0
+     *       * If it's a minor or major, then those are incremented. E.g. 1.1.0
+     *    c. Snapshot Version: the next version - should be checked-in to git. E.g. 1.0.1-SNAPSHOT or 1.1.0-SNAPSHOT
+     * 2. All others
+     *    a. Version: the version found in the package manager file (npm or maven). E.g. 1.0.0
+     *    b. Next Version: the version to use when building. E.g. 1.0.1
+     *
+     * NOTE: The SemVer class is NOT threadsafe. When you create a new SemVer instance using another SemVer instance as
+     * the constructor parameter, the new SemVer instance is a reference to the old. This means that any operation on one
+     * will effect the other, i.e. if `nextVersion` is 1.0.1, and you `newVersion = new SemVer(nextVersion)` and
+     * subsequently `nextVersion.inc('patch')`, both `nextVersion` and `newVersion` will be 1.0.2.
+     *
+     * @param version - the version string
+     * @param bump - version bump
+     */
+    setVersions(version, bump) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.snapshotRelease = version.endsWith('-SNAPSHOT');
+            this.version = new semver_1.SemVer(version);
+            if (bump) {
+                this.nextVersion = new semver_1.SemVer(`${this.version}`).inc(bump);
+                if (this.snapshotRelease) {
+                    const nextSnapshotVersion = new semver_1.SemVer(`${this.nextVersion}`).inc(bump);
+                    this.nextSnapshotVersion = new semver_1.SemVer(`${nextSnapshotVersion}-SNAPSHOT`);
+                }
             }
-        }
+        });
     }
 }
 exports.Outputs = Outputs;
@@ -4467,7 +4511,7 @@ Traverse.prototype.reduce = function (cb, init) {
 Traverse.prototype.paths = function () {
     var acc = [];
     this.forEach(function (x) {
-        acc.push(this.path);
+        acc.push(this.path); 
     });
     return acc;
 };
@@ -4482,24 +4526,24 @@ Traverse.prototype.nodes = function () {
 
 Traverse.prototype.clone = function () {
     var parents = [], nodes = [];
-
+    
     return (function clone (src) {
         for (var i = 0; i < parents.length; i++) {
             if (parents[i] === src) {
                 return nodes[i];
             }
         }
-
+        
         if (typeof src === 'object' && src !== null) {
             var dst = copy(src);
-
+            
             parents.push(src);
             nodes.push(dst);
-
+            
             forEach(objectKeys(src), function (key) {
                 dst[key] = clone(src[key]);
             });
-
+            
             parents.pop();
             nodes.pop();
             return dst;
@@ -4514,13 +4558,13 @@ function walk (root, cb, immutable) {
     var path = [];
     var parents = [];
     var alive = true;
-
+    
     return (function walker (node_) {
         var node = immutable ? copy(node_) : node_;
         var modifiers = {};
-
+        
         var keepGoing = true;
-
+        
         var state = {
             node : node,
             node_ : node_,
@@ -4559,17 +4603,17 @@ function walk (root, cb, immutable) {
             stop : function () { alive = false },
             block : function () { keepGoing = false }
         };
-
+        
         if (!alive) return state;
-
+        
         function updateState() {
             if (typeof state.node === 'object' && state.node !== null) {
                 if (!state.keys || state.node_ !== state.node) {
                     state.keys = objectKeys(state.node)
                 }
-
+                
                 state.isLeaf = state.keys.length == 0;
-
+                
                 for (var i = 0; i < parents.length; i++) {
                     if (parents[i].node_ === node_) {
                         state.circular = parents[i];
@@ -4581,49 +4625,49 @@ function walk (root, cb, immutable) {
                 state.isLeaf = true;
                 state.keys = null;
             }
-
+            
             state.notLeaf = !state.isLeaf;
             state.notRoot = !state.isRoot;
         }
-
+        
         updateState();
-
+        
         // use return values to update if defined
         var ret = cb.call(state, state.node);
         if (ret !== undefined && state.update) state.update(ret);
-
+        
         if (modifiers.before) modifiers.before.call(state, state.node);
-
+        
         if (!keepGoing) return state;
-
+        
         if (typeof state.node == 'object'
         && state.node !== null && !state.circular) {
             parents.push(state);
-
+            
             updateState();
-
+            
             forEach(state.keys, function (key, i) {
                 path.push(key);
-
+                
                 if (modifiers.pre) modifiers.pre.call(state, state.node[key], key);
-
+                
                 var child = walker(state.node[key]);
                 if (immutable && hasOwnProperty.call(state.node, key)) {
                     state.node[key] = child.node;
                 }
-
+                
                 child.isLast = i == state.keys.length - 1;
                 child.isFirst = i == 0;
-
+                
                 if (modifiers.post) modifiers.post.call(state, child);
-
+                
                 path.pop();
             });
             parents.pop();
         }
-
+        
         if (modifiers.after) modifiers.after.call(state, state.node);
-
+        
         return state;
     })(root).node;
 }
@@ -4631,7 +4675,7 @@ function walk (root, cb, immutable) {
 function copy (src) {
     if (typeof src === 'object' && src !== null) {
         var dst;
-
+        
         if (isArray(src)) {
             dst = [];
         }
@@ -4669,7 +4713,7 @@ function copy (src) {
             T.prototype = proto;
             dst = new T;
         }
-
+        
         forEach(objectKeys(src), function (key) {
             dst[key] = src[key];
         });
@@ -9789,7 +9833,7 @@ module.exports = require("util");
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -9802,7 +9846,7 @@ module.exports = require("util");
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -9811,14 +9855,14 @@ module.exports = require("util");
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/
+/******/ 	
 /******/ 	__webpack_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
