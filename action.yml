@@ -24,22 +24,22 @@ outputs:
     description: The current MINOR version.
   patch:
     description: The current PATCH version.
-  build-version:
-    description: The version used to build.
-  build-major:
-    description: The build MAJOR version.
-  build-minor:
-    description: The build MINOR version.
-  build-patch:
-    description: The build PATCH version.
   next-version:
-    description: the next version to set after the build.
+    description: The version used to next.
   next-major:
     description: The next MAJOR version.
   next-minor:
     description: The next MINOR version.
   next-patch:
     description: The next PATCH version.
+  next-snapshot-version:
+    description: the next SNAPSHOT version to set after the build.
+  next-snapshot-major:
+    description: The next SNAPSHOT MAJOR version.
+  next-snapshot-minor:
+    description: The next SNAPSHOT MINOR version.
+  next-snapshot-patch:
+    description: The next SNAPSHOT PATCH version.
 
 branding:
   icon: package
