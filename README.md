@@ -8,9 +8,7 @@ git history. That is left to the user.
 Set the various versions based on the initial version string, and based on the following:
 1. SNAPSHOTS:
   a. Version: the version found in the pom.xml. E.g. 1.0.0-SNAPSHOT
-  b. Next Version: the version to use when building.
-     * If it's a patch, then the SNAPSHOT patch version is used, otherwise, patch incremented by one. E.g. 1.0.0
-     * If it's a minor or major, then those are incremented. E.g. 1.1.0
+  b. Next Version: the version to use when building. This is the version without the '-SNAPSHOT' suffix. E.g. 1.0.0
   c. Snapshot Version: the next SNAPSHOT version - should be checked-in to git. E.g. 1.0.1-SNAPSHOT or 1.1.0-SNAPSHOT
 2. All others
   a. Version: the version found in the package manager file (npm or maven). E.g. 1.0.0
