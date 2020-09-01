@@ -1,3 +1,15 @@
+# v1.0.31 (Tue Sep 01 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Update output in action.yml ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.30 (Tue Sep 01 2020)
 
 #### ⚠️ Pushed to `master`
