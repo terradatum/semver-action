@@ -31,7 +31,7 @@ jobs:
         if: ${{ success() }}
         env:
           VERSION: ${{ steps.get_version.outputs.version }}
-          MAJOR: ${{ steps.get_version.outputs.version-major }}
+          MAJOR: ${{ steps.get_version.outputs.major }}
         run: |
           git config --local user.email "sysadmin@terradatum.com"
           git config --local user.name "Terradatum Automation"

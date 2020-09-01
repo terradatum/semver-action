@@ -23,8 +23,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Compare Version
-      run: |
+    - run: |
         echo "Compare Version:"
         if [[ "${{ inputs.expected-version }}" != "${{ inputs.actual-version }}" ]]; then
           echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
@@ -33,23 +32,21 @@ runs:
           echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
         fi
       shell: bash
-    - name: Compare Next Version
-      run: |
+    - run: |
         echo "Compare Next Version:"
-        if [[ "${{ inputs.expected-build-version }}" != "${{ inputs.actual-next-version }}" ]]; then
+        if [[ "${{ inputs.expected-next-version }}" != "${{ inputs.actual-next-version }}" ]]; then
           echo "::error::Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version }}"
           exit 1
         else
           echo "Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version }}"
         fi
       shell: bash
-    - name: Compare Next SNAPSHOT Version
-      run: |
+    - run: |
         echo "Compare Next SNAPSHOT Version:"
         if [[ "${{ inputs.expected-next-snapshot-version }}" != "${{ inputs.actual-next-snapshot-version }}" ]]; then
           echo "::error::Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version }}"
           exit 1
         else
-          echo "Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version.version }}"
+          echo "Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version }}"
         fi
       shell: bash
