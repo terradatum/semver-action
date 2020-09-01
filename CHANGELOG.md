@@ -1,3 +1,15 @@
+# v1.0.30 (Tue Sep 01 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Apparently not the final tweaks ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.29 (Tue Sep 01 2020)
 
 #### ⚠️ Pushed to `master`
