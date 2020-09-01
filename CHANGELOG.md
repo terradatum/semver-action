@@ -1,3 +1,15 @@
+# v1.0.33 (Tue Sep 01 2020)
+
+#### ⚠️ Pushed to `master`
+
+- True up the variable names across actions and workflows ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.32 (Tue Sep 01 2020)
 
 #### ⚠️ Pushed to `master`
