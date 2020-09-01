@@ -29,7 +29,7 @@ runs:
           echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
           exit 1
         else
-          echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version.version }}"
+          echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
           echo "Actual major: ${{ inputs.actual-version.major }}"
           echo "Actual minor: ${{ inputs.actual-version.minor }}"
           echo "Actual patch: ${{ inputs.actual-version.patch }}"

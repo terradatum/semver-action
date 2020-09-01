@@ -15,23 +15,23 @@ jobs:
       - run: npm run all
       - name: Verifying no unstaged changes
         run: __test__/verify-no-unstaged-changes.sh
+      - run: npm run release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Get package.json version
         uses: ./
         id: get_version
         with:
           package-manager-type: npm
-      - run: npm run release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Push to Major version tag
         if: ${{ success() }}
         env:
-          NEXT_VERSION: ${{ steps.get_version.outputs.next-version }}
-          NEXT_MAJOR: ${{ steps.get_version.outputs.next-major }}
+          VERSION: ${{ steps.get_version.outputs.version }}
+          MAJOR: ${{ steps.get_version.outputs.version-major }}
         run: |
           git config --local user.email "sysadmin@terradatum.com"
           git config --local user.name "Terradatum Automation"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
-          git tag --force -a "v${NEXT_MAJOR}" -m "Update to v${NEXT_MAJOR} from ${NEXT_VERSION}"
+          git tag --force -a "v${MAJOR}" -m "Update to v${MAJOR} from ${VERSION}"
           git push --force --tags
