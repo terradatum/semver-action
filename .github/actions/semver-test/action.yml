@@ -7,17 +7,17 @@ inputs:
   actual-version:
     description: The actual current version
     required: true
-  expected-build-version:
-    description: The expected build version
-    required: false
-  actual-build-version:
-    description: The actual build version
-    required: false
   expected-next-version:
     description: The expected next version
     required: false
   actual-next-version:
     description: The actual next version
+    required: false
+  expected-next-snapshot-version:
+    description: The expected next SNAPSHOT version
+    required: false
+  actual-next-snapshot-version:
+    description: The actual next SNAPSHOT version
     required: false
 
 runs:
@@ -25,8 +25,8 @@ runs:
   steps:
     - name: Compare Version
       run: |
-        if [[ "${{ inputs.expected-version }}" != "${{ inputs.actual-version.version }}" ]]; then
-          echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version.version }}"
+        if [[ "${{ inputs.expected-version }}" != "${{ inputs.actual-version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"
           exit 1
         else
           echo "Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version.version }}"
@@ -35,27 +35,27 @@ runs:
           echo "Actual patch: ${{ inputs.actual-version.patch }}"
         fi
       shell: bash
-    - name: Compare Build Version
-      run: |
-        if [[ "${{ inputs.expected-build-version }}" != "${{ inputs.actual-build-version.version }}" ]]; then
-          echo "::error::Expected: ${{ inputs.expected-build-version }}, Actual: ${{ inputs.actual-build-version.version }}"
-          exit 1
-        else
-          echo "Expected: ${{ inputs.expected-build-version }}, Actual: ${{ inputs.actual-build-version.version }}"
-          echo "Actual major: ${{ inputs.actual-build-version.major }}"
-          echo "Actual minor: ${{ inputs.actual-build-version.minor }}"
-          echo "Actual patch: ${{ inputs.actual-build-version.patch }}"
-        fi
-      shell: bash
     - name: Compare Next Version
       run: |
-        if [[ "${{ inputs.expected-next-version }}" != "${{ inputs.actual-next-version.version }}" ]]; then
-          echo "::error::Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version.version }}"
+        if [[ "${{ inputs.expected-build-version }}" != "${{ inputs.actual-next-version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version }}"
           exit 1
         else
-          echo "Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version.version }}"
+          echo "Expected: ${{ inputs.expected-next-version }}, Actual: ${{ inputs.actual-next-version }}"
           echo "Actual major: ${{ inputs.actual-next-version.major }}"
           echo "Actual minor: ${{ inputs.actual-next-version.minor }}"
           echo "Actual patch: ${{ inputs.actual-next-version.patch }}"
+        fi
+      shell: bash
+    - name: Compare Next SNAPSHOT Version
+      run: |
+        if [[ "${{ inputs.expected-next-snapshot-version }}" != "${{ inputs.actual-next-snapshot-version }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version }}"
+          exit 1
+        else
+          echo "Expected: ${{ inputs.expected-next-snapshot-version }}, Actual: ${{ inputs.actual-next-snapshot-version.version }}"
+          echo "Actual major: ${{ inputs.actual-next-snapshot-version.major }}"
+          echo "Actual minor: ${{ inputs.actual-next-snapshot-version.minor }}"
+          echo "Actual patch: ${{ inputs.actual-next-snapshot-version.patch }}"
         fi
       shell: bash
