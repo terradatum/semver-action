@@ -1,3 +1,15 @@
+# v1.0.28 (Tue Sep 01 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Update integration tests ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.27 (Tue Sep 01 2020)
 
 #### ⚠️ Pushed to `master`
