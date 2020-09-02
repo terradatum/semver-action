@@ -32,6 +32,44 @@ Set the various versions based on the initial version string, and based on the f
     # action is READ-ONLY for the filesystem.
     bump: ''
 ```
+```yaml
+outputs:
+  # The current version.
+  version: ''
+
+  # The current MAJOR version.
+  major: ''
+
+  # The current MINOR version.
+  minor: ''
+
+  # The current PATCH version.
+  patch: ''
+
+  # The version used to next.
+  next-version: ''
+
+  # The next MAJOR version.
+  next-major: ''
+
+  # The next MINOR version.
+  next-minor: ''
+
+  # The next PATCH version.
+  next-patch: ''
+
+  # the next SNAPSHOT version to set after the build.
+  next-snapshot-version: ''
+
+  # The next SNAPSHOT MAJOR version.
+  next-snapshot-major: ''
+
+  # The next SNAPSHOT MINOR version.
+  next-snapshot-minor: ''
+
+  # The next SNAPSHOT PATCH version.
+  next-snapshot-patch: ''
+```
 <!-- end usage -->
 
 ### Basic Usage

@@ -110,6 +110,75 @@ function updateUsage(
     firstInput = false
   }
 
+  const outputs = actionYaml.outputs
+  if (outputs) {
+    newReadme.push('```')
+
+    newReadme.push('```yaml', 'outputs:')
+
+    let firstOutput = true
+    for (const key of Object.keys(outputs)) {
+      const output = outputs[key]
+
+      // Line break between inputs
+      if (!firstOutput) {
+        newReadme.push('')
+      }
+
+      // Constrain the width of the description
+      const width = 80
+      let description = (output.description as string)
+        .trimRight()
+        .replace(/\r\n/g, '\n') // Convert CR to LF
+        .replace(/ +/g, ' ') //    Squash consecutive spaces
+        .replace(/ \n/g, '\n') //  Squash space followed by newline
+      while (description) {
+        // Longer than width? Find a space to break apart
+        let segment: string = description
+        if (description.length > width) {
+          segment = description.substr(0, width + 1)
+          while (!segment.endsWith(' ') && !segment.endsWith('\n') && segment) {
+            segment = segment.substr(0, segment.length - 1)
+          }
+
+          // Trimmed too much?
+          if (segment.length < width * 0.67) {
+            segment = description
+          }
+        } else {
+          segment = description
+        }
+
+        // Check for newline
+        const newlineIndex = segment.indexOf('\n')
+        if (newlineIndex >= 0) {
+          segment = segment.substr(0, newlineIndex + 1)
+        }
+
+        // Append segment
+        newReadme.push(`  # ${segment}`.trimRight())
+
+        // Remaining
+        description = description.substr(segment.length)
+      }
+
+      if (output.default !== undefined) {
+        // Append blank line if description had paragraphs
+        if ((output.description as string).trimRight().match(/\n[ ]*\r?\n/)) {
+          newReadme.push(`  #`)
+        }
+
+        // Default
+        newReadme.push(`  # Default: ${output.default}`)
+      }
+
+      // Input name
+      newReadme.push(`  ${key}: ''`)
+
+      firstOutput = false
+    }
+  }
+
   newReadme.push('```')
 
   // Append the end
