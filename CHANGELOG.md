@@ -1,3 +1,15 @@
+# v1.0.35 (Wed Sep 02 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Include the snapshot-release output in the action.yml and README ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.34 (Wed Sep 02 2020)
 
 #### ⚠️ Pushed to `master`
