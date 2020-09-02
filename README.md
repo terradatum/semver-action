@@ -34,6 +34,9 @@ Set the various versions based on the initial version string, and based on the f
 ```
 ```yaml
 outputs:
+  # Whether the version is a SNAPSHOT
+  snapshot-release: ''
+
   # The current version.
   version: ''
 
