@@ -1,3 +1,15 @@
+# v1.0.36 (Sat Mar 13 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Add CodeQL analysis ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.35 (Wed Sep 02 2020)
 
 #### ⚠️ Pushed to `master`
