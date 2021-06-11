@@ -49,7 +49,9 @@ export class Outputs implements IOutputs {
    * @param bump - version bump
    */
   async setVersions(version: string, bump: string): Promise<void> {
-    this.snapshotRelease = version.endsWith('-SNAPSHOT')
+    if (version.endsWith('-SNAPSHOT')) {
+      this.snapshotRelease = version.endsWith('-SNAPSHOT')
+    }
     this.version = new SemVer(version)
     if (bump) {
       this.nextVersion = new SemVer(`${this.version}`).inc(bump as ReleaseType)
@@ -59,6 +61,9 @@ export class Outputs implements IOutputs {
         )
         this.nextSnapshotVersion = new SemVer(`${nextSnapshotVersion}-SNAPSHOT`)
       }
+    } else {
+      this.nextVersion = new SemVer(version)
+      this.nextVersion = new SemVer(`${version}-SNAPSHOT`)
     }
   }
 }
