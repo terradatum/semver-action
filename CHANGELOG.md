@@ -1,3 +1,15 @@
+# v1.0.39 (Fri Jun 11 2021)
+
+#### ⚠️ Pushed to `master`
+
+- fix: don't append SNAPSHOT if it's already a SNAPSHOT release with no bump ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.38 (Fri Jun 11 2021)
 
 #### ⚠️ Pushed to `master`
