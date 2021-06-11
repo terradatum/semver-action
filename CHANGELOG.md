@@ -1,3 +1,15 @@
+# v1.0.40 (Fri Jun 11 2021)
+
+#### ⚠️ Pushed to `master`
+
+- test: add integration tests for snapshot-release ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.39 (Fri Jun 11 2021)
 
 #### ⚠️ Pushed to `master`
