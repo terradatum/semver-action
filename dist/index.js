@@ -300,7 +300,7 @@ class Outputs {
     setVersions(version, bump) {
         return __awaiter(this, void 0, void 0, function* () {
             if (version.endsWith('-SNAPSHOT')) {
-                this.snapshotRelease = version.endsWith('-SNAPSHOT');
+                this.snapshotRelease = true;
             }
             this.version = new semver_1.SemVer(version);
             if (bump) {
