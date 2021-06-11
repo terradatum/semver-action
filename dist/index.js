@@ -39,26 +39,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.loadPomXml = exports.loadPackageJson = exports.getInputs = void 0;
+exports.loadPackageJson = exports.getInputs = void 0;
 const core = __importStar(__webpack_require__(2186));
 const fs = __importStar(__webpack_require__(5747));
 const util_1 = __webpack_require__(1669);
 const path_1 = __importDefault(__webpack_require__(5622));
-const pom_parser_1 = __webpack_require__(5373);
+const maven_helper_1 = __webpack_require__(8072);
 const readFile = util_1.promisify(fs.readFile);
-const parsePom = util_1.promisify(pom_parser_1.parse);
 function getInputs() {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
         const result = {};
         result.version = core.getInput('version');
         result.packageManagerType = core.getInput('package-manager-type');
         switch (result.packageManagerType) {
             case 'maven': {
-                const pomXml = yield loadPomXml();
-                if ((_b = (_a = pomXml === null || pomXml === void 0 ? void 0 : pomXml.pomObject) === null || _a === void 0 ? void 0 : _a.project) === null || _b === void 0 ? void 0 : _b.version) {
-                    result.version = pomXml.pomObject.project.version;
-                }
+                result.version = yield maven_helper_1.getVersionFromPom();
                 break;
             }
             case 'npm': {
@@ -80,12 +75,6 @@ function loadPackageJson(root = './') {
     });
 }
 exports.loadPackageJson = loadPackageJson;
-function loadPomXml(root = './') {
-    return __awaiter(this, void 0, void 0, function* () {
-        return parsePom({ filePath: path_1.default.join(root, 'pom.xml') });
-    });
-}
-exports.loadPomXml = loadPomXml;
 //# sourceMappingURL=input-helper.js.map
 
 /***/ }),
@@ -159,6 +148,51 @@ function run() {
 }
 run();
 //# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 8072:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.loadPomXml = exports.getVersionFromPom = void 0;
+const pom_parser_1 = __webpack_require__(5373);
+const path_1 = __importDefault(__webpack_require__(5622));
+const util_1 = __webpack_require__(1669);
+const parsePom = util_1.promisify(pom_parser_1.parse);
+function getVersionFromPom() {
+    var _a, _b;
+    return __awaiter(this, void 0, void 0, function* () {
+        let pomVersion = '0.0.0';
+        const pomXml = yield loadPomXml();
+        if ((_b = (_a = pomXml === null || pomXml === void 0 ? void 0 : pomXml.pomObject) === null || _a === void 0 ? void 0 : _a.project) === null || _b === void 0 ? void 0 : _b.version) {
+            pomVersion = pomXml.pomObject.project.version;
+        }
+        return pomVersion;
+    });
+}
+exports.getVersionFromPom = getVersionFromPom;
+function loadPomXml(root = './') {
+    return __awaiter(this, void 0, void 0, function* () {
+        return parsePom({ filePath: path_1.default.join(root, 'pom.xml') });
+    });
+}
+exports.loadPomXml = loadPomXml;
+//# sourceMappingURL=maven-helper.js.map
 
 /***/ }),
 
@@ -265,7 +299,9 @@ class Outputs {
      */
     setVersions(version, bump) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.snapshotRelease = version.endsWith('-SNAPSHOT');
+            if (version.endsWith('-SNAPSHOT')) {
+                this.snapshotRelease = version.endsWith('-SNAPSHOT');
+            }
             this.version = new semver_1.SemVer(version);
             if (bump) {
                 this.nextVersion = new semver_1.SemVer(`${this.version}`).inc(bump);
@@ -273,6 +309,10 @@ class Outputs {
                     const nextSnapshotVersion = new semver_1.SemVer(`${this.nextVersion}`).inc(bump);
                     this.nextSnapshotVersion = new semver_1.SemVer(`${nextSnapshotVersion}-SNAPSHOT`);
                 }
+            }
+            else {
+                this.nextVersion = new semver_1.SemVer(version);
+                this.nextSnapshotVersion = new semver_1.SemVer(`${version}-SNAPSHOT`);
             }
         });
     }
