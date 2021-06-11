@@ -312,7 +312,12 @@ class Outputs {
             }
             else {
                 this.nextVersion = new semver_1.SemVer(version);
-                this.nextSnapshotVersion = new semver_1.SemVer(`${version}-SNAPSHOT`);
+                if (this.snapshotRelease) {
+                    this.nextSnapshotVersion = new semver_1.SemVer(version);
+                }
+                else {
+                    this.nextSnapshotVersion = new semver_1.SemVer(`${version}-SNAPSHOT`);
+                }
             }
         });
     }

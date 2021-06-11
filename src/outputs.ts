@@ -63,7 +63,11 @@ export class Outputs implements IOutputs {
       }
     } else {
       this.nextVersion = new SemVer(version)
-      this.nextSnapshotVersion = new SemVer(`${version}-SNAPSHOT`)
+      if (this.snapshotRelease) {
+        this.nextSnapshotVersion = new SemVer(version)
+      } else {
+        this.nextSnapshotVersion = new SemVer(`${version}-SNAPSHOT`)
+      }
     }
   }
 }
