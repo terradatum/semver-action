@@ -50,7 +50,7 @@ export class Outputs implements IOutputs {
    */
   async setVersions(version: string, bump: string): Promise<void> {
     if (version.endsWith('-SNAPSHOT')) {
-      this.snapshotRelease = version.endsWith('-SNAPSHOT')
+      this.snapshotRelease = true
     }
     this.version = new SemVer(version)
     if (bump) {

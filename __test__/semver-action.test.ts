@@ -99,6 +99,7 @@ describe('semver-action tests', () => {
       await outputs.setVersions(settings.version, settings.bump as ReleaseType)
       expect(outputs.version).toBeTruthy()
       expect(outputs.version).toEqual(new SemVer('v1.0.0'))
+      expect(outputs.snapshotRelease).toBeFalsy()
     })
   })
 
