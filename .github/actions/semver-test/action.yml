@@ -24,6 +24,15 @@ runs:
   using: composite
   steps:
     - run: |
+        echo "Compare Snapshot detection"
+        if [[ "${{ inputs.snapshot-release }}" != "${{ inputs.snapshot-release }}" ]]; then
+          echo "::error::Expected: ${{ inputs.snapshot-release }}, Actual: ${{ inputs.snapshot-release }}"
+          exit 1
+        else
+          echo "Expected: ${{ inputs.snapshot-release }}, Actual: ${{ inputs.snapshot-release }}"
+        fi
+      shell: bash
+    - run: |
         echo "Compare Version:"
         if [[ "${{ inputs.expected-version }}" != "${{ inputs.actual-version }}" ]]; then
           echo "::error::Expected: ${{ inputs.expected-version }}, Actual: ${{ inputs.actual-version }}"

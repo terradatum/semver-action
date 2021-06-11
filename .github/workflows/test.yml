@@ -39,6 +39,8 @@ jobs:
       - name: semver SNAPSHOT test
         uses: ./.github/actions/semver-test/
         with:
+          expected-snapshot-release: true
+          actual-snapshot-release: ${{ steps.get_snapshot_version.outputs.snapshot-release }}
           expected-version: 2.0.1-SNAPSHOT
           actual-version: ${{ steps.get_snapshot_version.outputs.version }}
           expected-next-version: 2.0.1
@@ -54,6 +56,8 @@ jobs:
       - name: semver test
         uses: ./.github/actions/semver-test/
         with:
+          expected-snapshot-release: false
+          actual-snapshot-release: ${{ steps.get_version.outputs.snapshot-release }}
           expected-version: 2.0.1
           actual-version: ${{ steps.get_version.outputs.version }}
           expected-next-version: 2.0.2
