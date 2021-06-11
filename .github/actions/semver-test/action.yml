@@ -25,8 +25,8 @@ runs:
   steps:
     - run: |
         echo "Compare Snapshot detection"
-        if [[ "${{ inputs.snapshot-release }}" != "${{ inputs.snapshot-release }}" ]]; then
-          echo "::error::Expected: ${{ inputs.snapshot-release }}, Actual: ${{ inputs.snapshot-release }}"
+        if [[ "${{ inputs.expected-snapshot-release }}" != "${{ inputs.actual-snapshot-release }}" ]]; then
+          echo "::error::Expected: ${{ inputs.expected-snapshot-release }}, Actual: ${{ inputs.actual-snapshot-release }}"
           exit 1
         else
           echo "Expected: ${{ inputs.snapshot-release }}, Actual: ${{ inputs.snapshot-release }}"
