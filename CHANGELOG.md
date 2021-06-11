@@ -1,3 +1,18 @@
+# v1.0.37 (Fri Jun 11 2021)
+
+#### ⚠️ Pushed to `master`
+
+- fix: need to include the dist.js file to ensure it's available for release ([@rbellamy](https://github.com/rbellamy))
+- fix: remove unfinished code and fixup types ([@rbellamy](https://github.com/rbellamy))
+- fix: ensure the output is not undefined ([@rbellamy](https://github.com/rbellamy))
+- Include the snapshot-release output in the action.yml and README ([@rbellamy](https://github.com/rbellamy))
+
+#### Authors: 1
+
+- G. Richard Bellamy ([@rbellamy](https://github.com/rbellamy))
+
+---
+
 # v1.0.36 (Sat Mar 13 2021)
 
 #### ⚠️ Pushed to `master`
