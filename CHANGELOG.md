@@ -13,6 +13,19 @@
 
 * don't set the git url - and save the creds from @actions/checkout@v2 ([5f4c78f](https://github.com/terradatum/semver-action/commit/5f4c78febba536959505efb81b85652118894e80))
 
+## [1.1.0](https://github.com/terradatum/semver-action/compare/v1.0.41...v1.1.0) (2021-06-12)
+
+
+### Features
+
+* **semantic-release:** use semantic-release for version/package management ([e28ba62](https://github.com/terradatum/semver-action/commit/e28ba62074ba9ebfe39d885f1594d7226de9dc14))
+* add pre-release to output ([25457f3](https://github.com/terradatum/semver-action/commit/25457f3151aa8d0502ae92bc04e3b6e081bc80c2)), closes [#6](https://github.com/terradatum/semver-action/issues/6)
+
+
+### Bug Fixes
+
+* don't set the git url - and save the creds from @actions/checkout@v2 ([5f4c78f](https://github.com/terradatum/semver-action/commit/5f4c78febba536959505efb81b85652118894e80))
+
 # v1.0.41 (Fri Jun 11 2021)
 
 #### ⚠️ Pushed to `master`
