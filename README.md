@@ -49,6 +49,9 @@ outputs:
   # The current PATCH version.
   patch: ''
 
+  # The current PRE-RELEASE version.
+  pre-release: ''
+
   # The version used to next.
   next-version: ''
 
@@ -60,6 +63,9 @@ outputs:
 
   # The next PATCH version.
   next-patch: ''
+
+  # The current PRE-RELEASE version.
+  next-pre-release: ''
 
   # the next SNAPSHOT version to set after the build.
   next-snapshot-version: ''

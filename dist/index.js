@@ -233,21 +233,23 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setOutputs = void 0;
 const core = __importStar(__webpack_require__(2186));
 function setOutputs(outputs) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
     return __awaiter(this, void 0, void 0, function* () {
         core.setOutput('snapshot-release', Boolean(outputs === null || outputs === void 0 ? void 0 : outputs.snapshotRelease));
         core.setOutput('version', String(outputs.version));
         core.setOutput('major', String((_a = outputs.version) === null || _a === void 0 ? void 0 : _a.major));
         core.setOutput('minor', String((_b = outputs.version) === null || _b === void 0 ? void 0 : _b.minor));
         core.setOutput('patch', String((_c = outputs.version) === null || _c === void 0 ? void 0 : _c.patch));
+        core.setOutput('pre-release', String((_d = outputs.version) === null || _d === void 0 ? void 0 : _d.prerelease));
         core.setOutput('next-version', String(outputs.nextVersion));
-        core.setOutput('next-major', String((_d = outputs.nextVersion) === null || _d === void 0 ? void 0 : _d.major));
-        core.setOutput('next-minor', String((_e = outputs.nextVersion) === null || _e === void 0 ? void 0 : _e.minor));
-        core.setOutput('next-patch', String((_f = outputs.nextVersion) === null || _f === void 0 ? void 0 : _f.patch));
+        core.setOutput('next-major', String((_e = outputs.nextVersion) === null || _e === void 0 ? void 0 : _e.major));
+        core.setOutput('next-minor', String((_f = outputs.nextVersion) === null || _f === void 0 ? void 0 : _f.minor));
+        core.setOutput('next-patch', String((_g = outputs.nextVersion) === null || _g === void 0 ? void 0 : _g.patch));
+        core.setOutput('next-pre-release', String((_h = outputs.nextVersion) === null || _h === void 0 ? void 0 : _h.prerelease));
         core.setOutput('next-snapshot-version', String(outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion));
-        core.setOutput('next-snapshot-major', String((_g = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _g === void 0 ? void 0 : _g.major));
-        core.setOutput('next-snapshot-minor', String((_h = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _h === void 0 ? void 0 : _h.minor));
-        core.setOutput('next-snapshot-patch', String((_j = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _j === void 0 ? void 0 : _j.patch));
+        core.setOutput('next-snapshot-major', String((_j = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _j === void 0 ? void 0 : _j.major));
+        core.setOutput('next-snapshot-minor', String((_k = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _k === void 0 ? void 0 : _k.minor));
+        core.setOutput('next-snapshot-patch', String((_l = outputs === null || outputs === void 0 ? void 0 : outputs.nextSnapshotVersion) === null || _l === void 0 ? void 0 : _l.patch));
     });
 }
 exports.setOutputs = setOutputs;
