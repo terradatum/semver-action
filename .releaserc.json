@@ -1,0 +1,47 @@
+{
+  "branches": [
+    {
+      "name": "main"
+    },
+    {
+      "name": "develop",
+      "prerelease": "rc"
+    }
+  ],
+  "tagFormat": "v${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogTitle": "# Changelog"
+      }
+    ],
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md"
+        ]
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          "rets-client-*.zip"
+        ]
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "./prepare.sh -l ${lastRelease.version} -n ${nextRelease.version}",
+        "publishCmd": "./publish.sh"
+      }
+    ]
+  ],
+  "preset": "conventionalcommits"
+}

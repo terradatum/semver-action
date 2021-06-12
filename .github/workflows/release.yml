@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    if: !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,9 +19,18 @@ jobs:
       - run: npm run all
       - name: Verifying no unstaged changes
         run: __test__/verify-no-unstaged-changes.sh
-      - run: npm run release
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic_release
+        with:
+          semantic_version: 16
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+            @semantic-release/exec
+            conventional-changelog-conventionalcommits
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Get package.json version
         uses: ./
@@ -29,7 +38,7 @@ jobs:
         with:
           package-manager-type: npm
       - name: Push to Major version tag
-        if: ${{ success() }}
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         env:
           VERSION: ${{ steps.get_version.outputs.version }}
           MAJOR: ${{ steps.get_version.outputs.major }}

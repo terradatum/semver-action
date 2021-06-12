@@ -26,7 +26,6 @@
     "format-check": "prettier --check **/**.ts",
     "lint": "eslint src/**/**.ts",
     "test": "jest",
-    "release": "npx auto shipit",
     "all": "npm run build && npm run format-check && npm run lint && npm run test"
   },
   "devDependencies": {
@@ -36,7 +35,6 @@
     "@types/semver": "^7.3.3",
     "@typescript-eslint/parser": "^3.10.1",
     "@vercel/ncc": "^0.24.0",
-    "auto": "^9.52.0",
     "eslint": "^7.7.0",
     "eslint-plugin-github": "^4.1.1",
     "eslint-plugin-jest": "^23.20.0",
