@@ -34,13 +34,6 @@
           "rets-client-*.zip"
         ]
       }
-    ],
-    [
-      "@semantic-release/exec",
-      {
-        "prepareCmd": "./prepare.sh -l ${lastRelease.version} -n ${nextRelease.version}",
-        "publishCmd": "./publish.sh"
-      }
     ]
   ],
   "preset": "conventionalcommits"
