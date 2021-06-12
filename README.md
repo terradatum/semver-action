@@ -18,7 +18,7 @@ Set the various versions based on the initial version string, and based on the f
 
 <!-- start usage -->
 ```yaml
-- uses: terradatum/semver-action@master
+- uses: terradatum/semver-action@main
   with:
     # The current version passed as an input to the action.
     version: ''
@@ -112,6 +112,6 @@ See [CHANGELOG][changelog-url].
 This project released under the [MIT License][license-url].
 
 <!-- Links: -->
-[license-url]: https://github.com/terradatum/semver-action/blob/master/LICENSE.md
+[license-url]: https://github.com/terradatum/semver-action/blob/main/LICENSE.md
 
-[changelog-url]: https://github.com/terradatum/semver-action/blob/master/CHANGELOG.md
+[changelog-url]: https://github.com/terradatum/semver-action/blob/main/CHANGELOG.md
