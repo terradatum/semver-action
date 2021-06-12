@@ -13,6 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          persist-credentials: true
           fetch-depth: 0
       - run: npm ci
       - run: npm run all
@@ -35,6 +36,5 @@ jobs:
         run: |
           git config --local user.email "sysadmin@terradatum.com"
           git config --local user.name "Terradatum Automation"
-          git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
           git tag --force -a "v${MAJOR}" -m "Update to v${MAJOR} from ${VERSION}"
           git push --force --tags
