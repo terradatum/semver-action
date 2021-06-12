@@ -26,6 +26,8 @@ outputs:
     description: The current MINOR version.
   patch:
     description: The current PATCH version.
+  pre-release:
+    description: The current PRE-RELEASE version.
   next-version:
     description: The version used to next.
   next-major:
@@ -34,6 +36,8 @@ outputs:
     description: The next MINOR version.
   next-patch:
     description: The next PATCH version.
+  next-pre-release:
+    description: The current PRE-RELEASE version.
   next-snapshot-version:
     description: the next SNAPSHOT version to set after the build.
   next-snapshot-major:
